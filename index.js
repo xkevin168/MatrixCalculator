@@ -1,7 +1,7 @@
-document.getElementById("testButton").onclick = function()
+document.getElementById("calcButton").onclick = function()
 {
-    var nc = document.getElementById("test");
-    nc.innerHTML = "<input type=\"text\" id=\"e34\" size=\"1\"></input>";
+    //var nc = document.getElementById("test");
+    //nc.innerHTML = "<input type=\"text\" id=\"e34\" size=\"1\"></input>";
 
     var o;
     var a1, a2, a3, b1, b2, b3;
