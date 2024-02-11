@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,9 +8,8 @@
     <title>Matrix Multiplier</title>
 </head>
 <body>
-    <div id="inputField">
-    <P>The matrices are multiplied in the following order: AB</P>
-    <p>Matrix A</p>
+    <div id="MatrixASpace">
+        <h2>Matrix A</h2>
         <div id="matrix1">
             <div id="matrix1Row1">
                 <input type="text" id="a11" size="1">
@@ -27,11 +27,14 @@
                 <input type="text" id="a33" size="1">
             </div>
         </div>
+        <br>
         <button id="incCol1">+ Columns</button>
         <button id="decCol1">- Columns</button>
         <button id="incRow1">+ Rows</button>
         <button id="decRow1">- Rows</button>
-    <p>Matrix B</p>
+    </div>
+    <div id="MatrixBSpace">
+        <h2>Matrix B</h2>
         <div id="matrix2">
             <div id="matrix2Row1">
                 <input type="text" id="b11" size="1">
@@ -49,32 +52,19 @@
                 <input type="text" id="b33" size="1">
             </div>
         </div>
+        <br>
         <button id="incCol2">+ Columns</button>
         <button id="decCol2">- Columns</button>
         <button id="incRow2">+ Rows</button>
         <button id="decRow2">- Rows</button>
         <br><br>
     </div>
-    <div id = "outputField">
+    <div id = "outputSpace">
         <button id="multiplyABButton">Calculate</button>
-        <div>Output:</div>
+        <h2>Output (AB):</h2>
         <p id="outputMessage"></p>
         <div id="outputMatrix">
-            <div id="outputMatrixRow1">
-                <input type="text" id="o11" size="1" readonly>
-                <input type="text" id="o12" size="1" readonly>
-                <input type="text" id="o13" size="1" readonly>
-            </div>
-            <div id="outputMatrixRow2">
-                <input type="text" id="o21" size="1" readonly>
-                <input type="text" id="o22" size="1" readonly>
-                <input type="text" id="o23" size="1" readonly>
-            </div>
-            <div id="outputMatrixRow3">
-                <input type="text" id="o31" size="1" readonly>
-                <input type="text" id="o32" size="1" readonly>
-                <input type="text" id="o33" size="1" readonly>
-            </div>
+            
         </div>
     </div>
     <script src="index.js"></script>

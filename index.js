@@ -8,10 +8,33 @@ var matrix2Cols = 3;
 document.getElementById("multiplyABButton").onclick = function()
 {
     document.getElementById("outputMessage").innerHTML = "";
+    document.getElementById("outputMatrix").innerHTML = "";
+
     if (matrix1Cols != matrix2Rows)
     {
         document.getElementById("outputMessage").innerHTML = "Incompatible Matrix Dimensions";
         return;
+    }
+
+
+    addColumn('outputMatrix', 'outputMatrixRow', 'o', 0, 0);
+
+    for (var outputCols = 2; outputCols <= matrix2Cols; outputCols++)
+    {
+        addColumn('outputMatrix', 'outputMatrixRow', 'o', outputCols, 1);
+    }
+
+    for (var outputRows = 2; outputRows <= matrix1Rows; outputRows++)
+    {
+        addRow('outputMatrix', 'outputMatrixRow', 'o', matrix2Cols, outputRows);
+    }
+
+    for (var x = 1; x <= matrix2Cols; x++)
+    {
+        for (var y = 1; y <= matrix1Rows; y++)
+        {
+            document.getElementById('o' + x + y).readOnly = true;
+        }
     }
 
     var o;
@@ -45,53 +68,105 @@ document.getElementById("multiplyABButton").onclick = function()
     }
 }
 
-document.getElementById("incRow1").onclick = function()
+function addRow(matrix_name, row_name, element_name, colsize, rowNumber)
 {
-    matrix1Rows++;
+    if (colsize == 0 && rowNumber == 0)
+    {
+        var firstElement = document.createElement('div');
+        firstElement.id = row_name + 1;
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.id = element_name + 1  + 1;
+        input.size = '1';
+        firstElement.appendChild(input);
+        firstElement.insertAdjacentText('beforeend', ` `);
+        document.getElementById(matrix_name).appendChild(firstElement);
+        return;
+    }
 
     var newRow = document.createElement('div');
-    newRow.id = 'matrix1Row' + matrix1Rows;
-    
-    for (var i = 1; i <= matrix1Cols; i++) 
+    newRow.id = row_name + rowNumber;
+
+    for (var i = 1; i <= colsize; i++) 
     {
         var input = document.createElement('input');
         input.type = 'text';
-        input.id = 'a' + matrix1Rows  + i;
+        input.id = element_name + rowNumber  + i;
         input.size = '1';
         newRow.appendChild(input);
+        newRow.insertAdjacentText('beforeend', ` `);
     }
-    
-    document.getElementById('matrix1').appendChild(newRow);
+
+    document.getElementById(matrix_name).appendChild(newRow);
+}
+
+function removeRow(matrix_name, row_name, rowNumber)
+{
+    var targetID = row_name + rowNumber;
+    var targetChild = document.getElementById(targetID);
+    document.getElementById(matrix_name).removeChild(targetChild);
+}
+
+function addColumn(matrix_name, row_name, element_name, colsize, rowNumber)
+{
+    if (colsize == 0 && rowNumber == 0)
+    {
+        var firstElement = document.createElement('div');
+        firstElement.id = row_name + 1;
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.id = element_name + 1  + 1;
+        input.size = '1';
+        firstElement.appendChild(input);
+        firstElement.insertAdjacentText('beforeend', ` `);
+        document.getElementById(matrix_name).appendChild(firstElement);
+        return;
+    }
+
+    for (var i = 1; i <= rowNumber; i++) 
+    {
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.id = element_name + i  + colsize;
+        input.size = '1';
+        document.getElementById(row_name + i).appendChild(input);
+        document.getElementById(row_name + i).insertAdjacentText('beforeend', ` `);
+    }
+}
+
+function removeColumn(row_name, element_name, colsize, rowNumber)
+{
+    for (var i = 1; i <= rowNumber; i++) 
+    {
+        var target = document.getElementById(element_name + i + colsize);
+        document.getElementById(row_name + i).removeChild(target);
+    }
+}
+
+document.getElementById("incRow1").onclick = function()
+{
+    matrix1Rows++;
+    addRow('matrix1', 'matrix1Row', 'a', matrix1Cols, matrix1Rows);
 }
 
 document.getElementById("decRow1").onclick = function()
 {
-    var targetID = 'matrix1Row' + matrix1Rows;
-    var targetChild = document.getElementById(targetID);
-    document.getElementById('matrix1').removeChild(targetChild);
- matrix1Rows--;
+    if (matrix1Rows > 0)
+    {
+        removeRow('matrix1', 'matrix1Row', matrix1Rows);
+        matrix1Rows--;
+    }
 }
 
 document.getElementById("incCol1").onclick = function()
 {
     matrix1Cols++;
-    for (var i = 1; i <= matrix1Rows; i++) 
-    {
-        var input = document.createElement('input');
-        input.type = 'text';
-        input.id = 'a' + i  + matrix1Cols;
-        input.size = '1';
-        document.getElementById('matrix1Row' + i).appendChild(input);
-    }
+    addColumn('matrix1', 'matrix1Row', 'a', matrix1Cols, matrix1Rows);
 }
 
 document.getElementById("decCol1").onclick = function()
 {
-    for (var i = 1; i <= matrix1Rows; i++) 
-    {
-        var target = document.getElementById('a' + i + matrix1Cols);
-        document.getElementById('matrix1Row' + i).removeChild(target);
-    }
+    removeColumn('matrix1Row', 'a', matrix1Cols, matrix1Rows);
     matrix1Cols--;
 }
 
@@ -99,48 +174,26 @@ document.getElementById("decCol1").onclick = function()
 document.getElementById("incRow2").onclick = function()
 {
     matrix2Rows++;
-
-    var newRow = document.createElement('div');
-    newRow.id = 'matrix2Row' + matrix2Rows;
-    
-    for (var i = 1; i <= matrix2Cols; i++) 
-    {
-        var input = document.createElement('input');
-        input.type = 'text';
-        input.id = 'b' + matrix2Rows  + i;
-        input.size = '1';
-        newRow.appendChild(input);
-    }
-    
-    document.getElementById('matrix2').appendChild(newRow);
+    addRow('matrix2', 'matrix2Row', 'b', matrix2Cols, matrix2Rows);
 }
 
 document.getElementById("decRow2").onclick = function()
 {
-    var targetID = 'matrix2Row' + matrix2Rows;
-    var targetChild = document.getElementById(targetID);
-    document.getElementById('matrix2').removeChild(targetChild);
-    matrix2Rows--;
+    if (matrix2Rows > 0)
+    {
+        removeRow('matrix2', 'matrix2Row', matrix2Rows);
+        matrix2Rows--;
+    }
 }
 
 document.getElementById("incCol2").onclick = function()
 {
     matrix2Cols++;
-    for (var i = 1; i <= matrix2Rows; i++) 
-    {
-        var input = document.createElement('input');
-        input.type = 'text';
-        input.id = 'b' + i  + matrix2Cols;
-        input.size = '1';
-        document.getElementById('matrix2Row' + i).appendChild(input);
-    }
+    addColumn('matrix2', 'matrix2Row', 'b', matrix2Cols, matrix2Rows);
 }
 
 document.getElementById("decCol2").onclick = function()
 {
-    for (var i = 1; i <= matrix2Rows; i++) {
-        var target = document.getElementById('b' + i + matrix2Cols);
-        document.getElementById('matrix2Row' + i).removeChild(target);
-    }
+    removeColumn('matrix2Row', 'b', matrix2Cols, matrix2Rows);
     matrix2Cols--;
 }

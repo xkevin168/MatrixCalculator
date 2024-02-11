@@ -1,0 +1,47 @@
+#MatrixASpace {
+    margin-left: 20%;
+}
+
+#outputSpace {
+    margin-left: 20%;
+}
+
+input {
+    font-family: "Lucida Console", "Courier New", monospace;
+    width: 30px;
+    height: 20px;
+    transition: 2s;
+}
+
+input:focus {
+    background-color: rgba(255, 255, 0, 0.5);
+}
+
+body {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 350px 300px;
+}
+
+h2 {
+    font-size: 2rem;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+button {
+    position: relative;
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: rgba(0, 0, 0, 0.9);
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    letter-spacing: 0.1rem;
+    transition: 0.5s;
+}
+
+button:hover {
+    color: rgb(255,255,255);
+    background-color:rgb(143, 143, 143);
+    border: 2px solid rgba(255, 255, 255, 1);
+}
