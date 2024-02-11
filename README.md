@@ -1,2 +1,2 @@
 # MatrixCalculator
-A simple calculator for matrix operations.
+A calculator that multiplies two arbitrary sized, and resizable matrices.
