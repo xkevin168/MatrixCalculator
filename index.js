@@ -59,6 +59,7 @@ document.getElementById("incRow1").onclick = function()
         input.id = 'a' + matrix1Rows  + i;
         input.size = '1';
         newRow.appendChild(input);
+        newRow.insertAdjacentText('beforeend', ` `);
     }
     
     document.getElementById('matrix1').appendChild(newRow);
@@ -69,7 +70,7 @@ document.getElementById("decRow1").onclick = function()
     var targetID = 'matrix1Row' + matrix1Rows;
     var targetChild = document.getElementById(targetID);
     document.getElementById('matrix1').removeChild(targetChild);
- matrix1Rows--;
+    matrix1Rows--;
 }
 
 document.getElementById("incCol1").onclick = function()
@@ -82,6 +83,7 @@ document.getElementById("incCol1").onclick = function()
         input.id = 'a' + i  + matrix1Cols;
         input.size = '1';
         document.getElementById('matrix1Row' + i).appendChild(input);
+        document.getElementById('matrix1Row' + i).insertAdjacentText('beforeend', ` `);
     }
 }
 
@@ -110,6 +112,7 @@ document.getElementById("incRow2").onclick = function()
         input.id = 'b' + matrix2Rows  + i;
         input.size = '1';
         newRow.appendChild(input);
+        newRow.insertAdjacentText('beforeend', ` `);
     }
     
     document.getElementById('matrix2').appendChild(newRow);
@@ -133,6 +136,7 @@ document.getElementById("incCol2").onclick = function()
         input.id = 'b' + i  + matrix2Cols;
         input.size = '1';
         document.getElementById('matrix2Row' + i).appendChild(input);
+        document.getElementById('matrix2Row' + i).insertAdjacentText('beforeend', ` `);
     }
 }
 
